@@ -1,34 +1,134 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
         <style>
             #rollbox {
-                border: 1px solid #000;
-                border-radius: 9px;
-                position: absolute;
-                top: 11px;
-                bottom: 50%;
-                left: 11px;
-                right: 11px;
-                height: 50%;
-                font-size: 10rem;
-                line-height: 600px;
-                text-align: center;
+                display: flex; 
+                width: 98.5%; 
+                height: 50%; 
+                margin: auto; 
+                border-radius: 10px; 
+                border: 3px dashed #1c87c9; 
+                margin: 10px;
+                background: rgb(240,240,240);
+                background: linear-gradient(180deg, rgba(240,240,240,1) 0%, rgba(255,255,255,1) 100%);
+            }
+            p { 
+                margin: auto; /* Important */ 
+                text-align: center; 
+                font-size: 20rem;
             }
             html, body{
                 height: 100%;
                 margin: 0;
                 padding: 0;
+                font-family: 'Montserrat', sans-serif;
             }
             * {
                 box-sizing: border-box;
             }
-        </style>
+
+            #flextape {
+                display: flex;
+                flex-flow: row wrap;
+                flex-wrap: wrap;
+                width: 98.5%; 
+                margin: auto;
+            }
+            #flextape button {
+                flex-grow: 1;
+                border-radius: 3px;
+                margin: 2px;
+                font-size: 2rem;
+                cursor: pointer;
+                font-family: 'Montserrat', sans-serif;
+            }
+            @media all and (max-width: 600px) {
+                #flextape button { 
+                    flex: none;
+                    display: block;
+                    width: 100%;
+                 }
+            }
+        </style>        
     </head>
 
     <body>
         <div id="rollbox">
-            asdf
+            <p id="num">100</p>
         </div>
+        <div id="flextape">
+            <button onclick="r.d4()">
+                d4
+            </button>
+            <button onclick="r.d6()">
+                d6
+            </button>
+            <button onclick="r.d18()">
+                3d6
+            </button>
+            <button onclick="r.d8()">
+                d8
+            </button>
+            <button onclick="r.d10()">
+                d10
+            </button>
+            <button onclick="r.d12()">
+                d12
+            </button>
+            <button onclick="r.d20()">
+                d20
+            </button>
+            <button onclick="r.d100()">
+                d100
+            </button>
+        </div>
+        <script>
+            var r = {
+                createRange: function (min, max) {
+                    var n = Math.random() * (max - min) + min;
+                    return Math.floor (n);
+                },
+                changenum: function (s) {
+                    var n = document.getElementById ("num");
+                    n.innerHTML = s;
+                },
+                d4: function() {
+                    var x = this.createRange (1,5);
+                    this.changenum (x);
+                },
+                d6: function() {
+                    var x = this.createRange (1,7);
+                    this.changenum (x);
+                },
+                d8: function() {
+                    var x = this.createRange (1,9);
+                    this.changenum (x);
+                },
+                d10: function() {
+                    var x = this.createRange (1,11);
+                    this.changenum (x);
+                },
+                d12: function() {
+                    var x = this.createRange (1,13);
+                    this.changenum (x);
+                },
+                d20: function() {
+                    var x = this.createRange (1,21);
+                    this.changenum (x);
+                },
+                d100: function() {
+                    var x = this.createRange (1,101);
+                    this.changenum (x);
+                },
+                d18: function() {
+                    var x = this.createRange (1,7);
+                    var y = this.createRange (1,7);
+                    var z = this.createRange (1,7);
+                    this.changenum (x+y+z);
+                }
+            };
+        </script>
     </body>
 </html>
